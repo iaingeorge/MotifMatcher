@@ -3,4 +3,5 @@
 .DS_Store
 
 # Ignore code testing/playground files
+input*.txt
 results-*.txt

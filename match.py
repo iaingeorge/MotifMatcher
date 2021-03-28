@@ -28,3 +28,17 @@ for line in utrList:
         sequence += line[j]
     utrSequences[gene] = sequence
 
+for k in matchList:
+    output = open('results-' + puf + '-' + k  + '.txt','w')
+    j = 0
+    results = ''
+
+    for i in utrSequences.keys():
+        if k in utrSequences[i]:
+            results += i + '\t' + k + '\t' + str(utrSequences[i],index(k))
+            position = utrSequences[i].index(k) + 1
+            while (utrSequences[i])[pos:].count(k) >= 1:
+                position = position + (utrSequences[i])[pos:].index(k) + 1
+                ressults += ', ' + str(position - 1)
+            results += '\n'
+    output.write(results)
