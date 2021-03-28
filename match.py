@@ -8,14 +8,13 @@ import re
 puf = 'puf3'
 
 # Load motifs to check
-motifsFile = open('input' + puf + '.txt')
-    matchList = motifsFile.read().split('\n')
+motifsFile = open('input_' + puf + '.txt')
+matchList = motifsFile.read().split('\n')
 motifsFile.close()
 
 # Load UTRs to check against
 utrFile = open('3utr.txt')
-    utrList = utrFile.read().split('>')
-
+utrList = utrFile.read().split('>')
 utrFile.close()
 
 utrSequences = {}
@@ -35,10 +34,10 @@ for k in matchList:
 
     for i in utrSequences.keys():
         if k in utrSequences[i]:
-            results += i + '\t' + k + '\t' + str(utrSequences[i],index(k))
+            results += i + '\t' + k + '\t' + str(utrSequences[i].index(k))
             position = utrSequences[i].index(k) + 1
-            while (utrSequences[i])[pos:].count(k) >= 1:
-                position = position + (utrSequences[i])[pos:].index(k) + 1
-                ressults += ', ' + str(position - 1)
+            while (utrSequences[i])[position:].count(k) >= 1:
+                position = position + (utrSequences[i])[position:].index(k) + 1
+                results += ', ' + str(position - 1)
             results += '\n'
     output.write(results)
