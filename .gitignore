@@ -1,0 +1,6 @@
+
+# Ignore Mac metadata files
+.DS_Store
+
+# Ignore code testing/playground files
+results-*.txt
