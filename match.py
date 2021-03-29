@@ -19,6 +19,7 @@ utrFile.close()
 
 utrSequences = {}
 
+# Parse out genes and sequences from UTR list
 for line in utrList:
     line = line.split('\n')
     gene = re.sub('[|]+\w{0,5}', '', line[0])
@@ -27,17 +28,17 @@ for line in utrList:
         sequence += line[j]
     utrSequences[gene] = sequence
 
-for k in matchList:
-    output = open('results-' + puf + '-' + k  + '.txt','w')
-    j = 0
+# Look for matches and output as separate files with position
+for motif in matchList:
+    output = open('results-' + puf + '-' + motif  + '.txt','w')
     results = ''
 
-    for i in utrSequences.keys():
-        if k in utrSequences[i]:
-            results += i + '\t' + k + '\t' + str(utrSequences[i].index(k))
-            position = utrSequences[i].index(k) + 1
-            while (utrSequences[i])[position:].count(k) >= 1:
-                position = position + (utrSequences[i])[position:].index(k) + 1
+    for geneName in utrSequences.keys():
+        if motif in utrSequences[geneName]:
+            results += geneName + '\t' + motif + '\t' + str(utrSequences[geneName].index(motif))
+            position = utrSequences[geneName].index(motif) + 1
+            while (utrSequences[geneName])[position:].count(motif) >= 1:
+                position = position + (utrSequences[geneName])[position:].index(motif) + 1
                 results += ', ' + str(position - 1)
             results += '\n'
     output.write(results)
