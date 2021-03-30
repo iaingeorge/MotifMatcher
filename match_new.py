@@ -7,6 +7,16 @@ import re
 # Puf of interest
 puf = 'puf3'
 
+def LoadDataFiles(InputFile, Separator):
+    """
+    This function loads in the needed source files and 
+    parses the data out as a list
+    """
+    File = open(InputFile)
+    List = File.read().split(Separator)
+
+    pass
+
 # Load motifs to check
 motifsFile = open('input_' + puf + '.txt')
 matchList = motifsFile.read().split('\n')
